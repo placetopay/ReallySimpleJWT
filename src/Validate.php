@@ -25,6 +25,13 @@ namespace ReallySimpleJWT;
 class Validate
 {
     /**
+     * Validation for the secret string
+     *
+     * @var string
+     */
+    public static $secretPattern = '/^.*(?=.{12,}+)(?=.*[0-9]+)(?=.*[A-Z]+)(?=.*[a-z]+)(?=.*[\*&!@%\^#\$]+).*$/';
+
+    /**
      * Confirm the structure of a JSON Web Token, it has three parts separated
      * by dots and complies with Base64 URL standards.
      *
@@ -88,8 +95,7 @@ class Validate
     public function secret(string $secret): bool
     {
         if (!preg_match(
-            '/^.*(?=.{12,}+)(?=.*[0-9]+)(?=.*[A-Z]+)(?=.*[a-z]+)(?=.*[\*&!@%\^#\$]+).*$/',
-            $secret
+            self::$secretPattern, $secret
         )) {
             return false;
         }
