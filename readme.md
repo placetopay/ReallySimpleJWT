@@ -316,9 +316,15 @@ It is possible to edit and enhance the implementation of the signature and its s
 
 ### Signature Secret
 
-This JWT library imposes strict secret security as follows: the secret must be at least 12 characters in length; contain numbers; upper and lowercase letters; and one of the following special characters `*&!@%^#$`.
+This JWT library does not imposes strict secret string security. However a good practice could be to set a strict pattern to validate the secret.
 
 ```php
+# setting a secret string pattern for validation
+\ReallySimpleJWT\Validate::$secretPattern = '/^.*$/';
+
+// Same validation without special characters
+\ReallySimpleJWT\Validate::$secretPattern = /^.*(?=.{12,}+)(?=.*[0-9]+)(?=.*[A-Z]+)(?=.*[a-z]+).*$/;
+
 // Bad Secret
 secret123
 
@@ -326,12 +332,7 @@ secret123
 sec!ReT423*&
 ```
 
-The reason for this is that there are lots of [JWT Crackers](https://github.com/lmammino/jwt-cracker) available meaning weak secrets are easy to crack thus rendering the security JWT offers useless. However, the developer could change the secret pattern validation as follows
-
-```php
-// Same validation without special characters
-\ReallySimpleJWT\Validate::$secretPattern = /^.*(?=.{12,}+)(?=.*[0-9]+)(?=.*[A-Z]+)(?=.*[a-z]+).*$/;
-```
+The reason for this is that there are lots of [JWT Crackers](https://github.com/lmammino/jwt-cracker) available meaning weak secrets are easy to crack thus rendering the security JWT offers useless.
 
 ## Version One Support
 
