@@ -305,7 +305,7 @@ The ReallySimpleJWT library will in a number of situations throw exceptions to h
 | 6    | Expiration claim is not set.      | Attempt was made to validate an Expiration claim which does not exist. |
 | 7    | Not Before claim is not set.      | Attempt was made to validate a Not Before claim which does not exist. |
 | 8    | Invalid payload claim.            | Payload claims must be key value pairs of the format string:mixed. |
-| 9    | Invalid secret.                   | Must be 12 characters in length, contain upper and lower case letters, a number, and a special character `*&!@%^#$`` |
+| 9    | Invalid secret.                   | Must be 12 characters in length, contain upper and lower case letters, a number, and a special character `*&!@%^#$`` by default or user defined. |
 | 10   | Invalid Audience claim.           | The aud claim can either be a string or an array of strings nothing else. |
 
 ## Token Security
@@ -316,9 +316,15 @@ It is possible to edit and enhance the implementation of the signature and its s
 
 ### Signature Secret
 
-This JWT library imposes strict secret security as follows: the secret must be at least 12 characters in length; contain numbers; upper and lowercase letters; and one of the following special characters `*&!@%^#$`.
+This JWT library does not imposes strict secret string security. However a good practice could be to set a strict pattern to validate the secret.
 
 ```php
+# setting a secret string pattern for validation
+\ReallySimpleJWT\Validate::$secretPattern = '/^.*$/';
+
+// Same validation without special characters
+\ReallySimpleJWT\Validate::$secretPattern = /^.*(?=.{12,}+)(?=.*[0-9]+)(?=.*[A-Z]+)(?=.*[a-z]+).*$/;
+
 // Bad Secret
 secret123
 

@@ -17,13 +17,20 @@ namespace ReallySimpleJWT;
  * 6: Expiration claim is not set.
  * 7: Not Before claim is not set.
  * 8: Invalid payload claim: Claims must be key values of type string:mixed.
- * 9: Invalid secret: See README for more information.
+ * 9: Invalid secret: The secret string does not match the pattern
  * 10: Invalid Audience claim: Must be either a string or array of strings.
  *
  * @author Rob Waller <rdwaller1984@googlemail.com>
  */
 class Validate
 {
+    /**
+     * Validation for the secret string
+     *
+     * @var string
+     */
+    public static $secretPattern = '/^.*$/';
+
     /**
      * Confirm the structure of a JSON Web Token, it has three parts separated
      * by dots and complies with Base64 URL standards.
@@ -88,8 +95,7 @@ class Validate
     public function secret(string $secret): bool
     {
         if (!preg_match(
-            '/^.*(?=.{12,}+)(?=.*[0-9]+)(?=.*[A-Z]+)(?=.*[a-z]+)(?=.*[\*&!@%\^#\$]+).*$/',
-            $secret
+            self::$secretPattern, $secret
         )) {
             return false;
         }
