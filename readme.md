@@ -1,10 +1,9 @@
 # Really Simple JSON Web Tokens
-[![Build Status](https://travis-ci.org/RobDWaller/ReallySimpleJWT.svg?branch=master)](https://travis-ci.org/RobDWaller/ReallySimpleJWT) [![codecov](https://codecov.io/gh/RobDWaller/ReallySimpleJWT/branch/master/graph/badge.svg)](https://codecov.io/gh/RobDWaller/ReallySimpleJWT) [![StyleCI](https://styleci.io/repos/82379868/shield?branch=master)](https://styleci.io/repos/82379868) [![Latest Stable Version](https://poser.pugx.org/rbdwllr/reallysimplejwt/v/stable)](https://packagist.org/packages/rbdwllr/reallysimplejwt) [![Total Downloads](https://poser.pugx.org/rbdwllr/reallysimplejwt/downloads)](https://packagist.org/packages/rbdwllr/reallysimplejwt)
 
 A simple PHP library for creating JSON Web Tokens that uses HMAC SHA256 to sign
 signatures. For basic usage the library exposes a static interface to allow developers to create a token that stores a user identifier and expiration time.
 
-The library is also open to extension, developers can define their own encoding standard, set all the [RFC standard](https://tools.ietf.org/html/rfc7519) JWT claims and set their own private claims.  
+The library is also open to extension, developers can define their own encoding standard, set all the [RFC standard](https://tools.ietf.org/html/rfc7519) JWT claims and set their own private claims.
 
 ## Contents
 
@@ -24,7 +23,6 @@ The library is also open to extension, developers can define their own encoding 
 - [Error Messages and Codes](#error-messages-and-codes)
 - [Token Security](#token-security)
     - [Signature Secret](#signature-secret)
-- [Version One Support](#version-one-support)
 
 ## What is a JSON Web Token?
 
@@ -66,14 +64,14 @@ If a malicious user attempts to edit the header or payload claims they will be u
 Via Composer on the command line:
 
 ```bash
-composer require rbdwllr/reallysimplejwt
+composer require placetopay/reallysimplejwt
 ```
 
 Via composer.json:
 
 ```javascript
 "require": {
-    "rbdwllr/reallysimplejwt": "^2.0"
+    "placetopay/reallysimplejwt": "^2.1"
 }
 ```
 
@@ -333,10 +331,6 @@ sec!ReT423*&
 ```
 
 The reason for this is that there are lots of [JWT Crackers](https://github.com/lmammino/jwt-cracker) available meaning weak secrets are easy to crack thus rendering the security JWT offers useless.
-
-## Version One Support
-
-Support for version one of this library will continue until July 2019. No new features will be added to the version, just bug fixes and security patches.
 
 ## License
 
